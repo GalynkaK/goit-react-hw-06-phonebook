@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilter } from "redux/contacts/contacts-selector";
 import { setFilter } from "redux/contacts/actions";
 
-export const Filter = () => {
+const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
 
@@ -26,4 +26,5 @@ export const Filter = () => {
     </div>
   );
 };
+
 export default Filter;

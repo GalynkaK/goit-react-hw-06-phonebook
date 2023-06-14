@@ -48,12 +48,9 @@ const App = () => {
     dispatch(delContact(e));
   };
 
-  const getFilteredContacts = () => {
-    const filterContactsList = contacts.filter(contact => {
-      return contact.name.toLowerCase().includes(filter.toLowerCase());
-    });
-    return filterContactsList;
-  };
+  const filteredContacts = contacts.filter(contact => {
+    return contact.name.toLowerCase().includes(filter.toLowerCase());
+  });
 
   return (
     <div
@@ -71,7 +68,7 @@ const App = () => {
       <h2> Contacts</h2>
       <Filter />
       <ContactList
-        contacts={getFilteredContacts()}
+        contacts={filteredContacts}
         handleDelete={handleDelete}
       />
     </div>
