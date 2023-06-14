@@ -1,26 +1,43 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import css from "./Form.module.css";
+import { useSelector } from "react-redux";
+import { getContacts } from "../../redux/contacts/contacts-selector.js";
 
-export const Form = ({ handleSubmit }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+const Form = ({ handleSubmit }) => {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
-  const handleChangeName = e => {
+  const contacts = useSelector(getContacts);
+
+  const handleChangeName = (e) => {
     const { value } = e.target;
     setName(value);
   };
 
-  const handleChangeNumber = e => {
+  const handleChangeNumber = (e) => {
     const { value } = e.target;
     setNumber(value);
   };
 
-  const handleFormSubmit = e => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
+
     const form = e.currentTarget;
+
+    const existingContact = contacts.find(
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (existingContact) {
+      alert("Already exists in your contacts!");
+      return;
+    }
+
     handleSubmit({ name: name, number: number });
     form.reset();
+    setName("");
+    setNumber("");
   };
 
   return (

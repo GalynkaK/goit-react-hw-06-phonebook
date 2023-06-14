@@ -7,7 +7,7 @@ export const addContact = createAction(
     return {
       payload: {
         id: nanoid(),
-        name: nameText,
+        name: nameText.toLowerCase(),
         number: numberText,
       },
     };
